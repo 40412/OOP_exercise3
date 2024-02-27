@@ -10,7 +10,7 @@ class Item:
         return self.__weight
     
     def __str__(self) -> str:
-        return f"{self.__name}, {self.__weight}kg"
+        return f"{self.__name}, {self.__weight}g"
     
 class Suitcase:
     def __init__(self, max_weight) -> None:
@@ -46,9 +46,10 @@ class Suitcase:
         heaviest = None
 
         if self.__items:
-
+            heaviest_weight = 0
             for item in self.__items:
-                if item.get_weight() > heaviest:
+                if item.get_weight() > heaviest_weight:
+                    heaviest_weight = item.get_weight()
                     heaviest = item
             return heaviest
         else:
@@ -57,9 +58,9 @@ class Suitcase:
     def __str__(self) -> str:
         
         if len(self.__items) == 1:
-            return f"{len(self.__items)} item ({self.get_total_weight()} kg)"
+            return f"{len(self.__items)} item ({self.get_total_weight()} g)"
         else:
-            return f"{len(self.__items)} items ({self.get_total_weight()} kg)"
+            return f"{len(self.__items)} items ({self.get_total_weight()} g)"
         
 class CargoHold:
     def __init__(self, max_weight) -> None:
@@ -93,9 +94,9 @@ class CargoHold:
 
     def __str__(self) -> str:
         if len(self.__suitcases) == 1:
-            return f"1 suitcase, space for {self.__max_weight - self.get_total_weight()}kg"
+            return f"1 suitcase, space for {self.__max_weight - self.get_total_weight()}g"
         else:
-            return f"{len(self.__suitcases)} suitcases, space for {self.__max_weight - self.get_total_weight()}kg"
+            return f"{len(self.__suitcases)} suitcases, space for {self.__max_weight - self.get_total_weight()}g"
         
 book=Item("ABC Book",200)
 phone=Item("Nokia 3210",100)
@@ -104,6 +105,8 @@ brick=Item("Brick",400)
 adas_suitcase=Suitcase(1000)
 adas_suitcase.add_item(book)
 adas_suitcase.add_item(phone)
+
+print("Heaviest item:", adas_suitcase.get_heaviest_item())
 
 peters_suitcase=Suitcase(1000)
 peters_suitcase.add_item(brick)
