@@ -1,3 +1,7 @@
+# File: task4.py
+# Author: Jasmin Fränti
+# Description: Task 4 of exercise 4
+
 class ComputerGame:
     def __init__(self, name: str, publisher: str, year: int):
         self.name = name

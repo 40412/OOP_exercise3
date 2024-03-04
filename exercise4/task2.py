@@ -1,3 +1,7 @@
+# File: task2.py
+# Author: Jasmin Fränti
+# Description: Task 2 of exercise 4
+
 class Item:
     def __init__(self, name, weight) -> None:
         self.__name = name

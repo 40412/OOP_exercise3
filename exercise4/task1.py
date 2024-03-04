@@ -1,3 +1,7 @@
+# File: task1.py
+# Author: Jasmin Fränti
+# Description: Task 1 of exercise 4
+
 class ListHelper:
 
     def greatest_frequency(my_list: list):

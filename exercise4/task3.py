@@ -1,3 +1,7 @@
+# File: task3.py
+# Author: Jasmin Fränti
+# Description: Task 3 of exercise 4
+
 class Computer:
     def __init__(self, model: str, speed: int) -> None:
         self.__model = model
