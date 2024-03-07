@@ -1,6 +1,6 @@
-# File: task5.py
+# File: task6.py
 # Author: Jasmin Fränti
-# Description: Task 5 of exercise 4 
+# Description: Task 6 of exercise 4 
 # Dice
 
 import random
