@@ -1,9 +1,27 @@
-# File: task1.py
+# File: task2.py
 # Author: Jasmin Fränti
-# Description: Task 1 of exercise 5
-# UML Class Diagram code implementation
+# Description: Task 2 of exercise 6
+# Python code implementation of the UML sequence diagram
 
 import random
+
+class Habitat:
+    def __init__(self, name: str) -> None:
+        self.__name = name
+        self.__animals = []
+        
+    def get_name(self):
+        return self.__name
+    
+    def set_name(self, name):
+        self.__name = name
+        
+    def get_animals(self):
+        return self.__animals
+    
+    def add_animal(self, animal):
+        self.__animals.append(animal)
+        
 
 class Mammal:
     def __init__(self, name, age, habitat):
@@ -12,10 +30,10 @@ class Mammal:
         self.__habitat = habitat
 
     def eat(self):
-        return f"{self.__name} is eating."
+        return f"{self.get_name()} is eating."
 
-    def sleep(self):
-        return f"{self.__name} is sleeping."
+    def rest(self):
+        print(f"{self.get_name()} is now resting in the shadow of an acacia tree")
     
     def get_name(self):
         return self.__name
@@ -58,7 +76,11 @@ class Lion(Mammal):
         return f"{self.__name} is roaring."
     
     def hunt(self, prey):
-        print(f"{self.__name} is hunting {prey}")
+        print(f"{self.get_name()} is hunting {prey.get_name()}")
+        
+    def move_to_habitat(self, habitat):
+        self.set_habitat(habitat)
+        print(f"{self.get_name()} moves to {habitat.get_name()}")
 
 
 class Gazelle(Mammal):
@@ -84,9 +106,23 @@ class Gazelle(Mammal):
     
     def escape(self, predator: Lion):
         num = random.randint(1,2)
-        print(f"{self.__name} is trying to escape {predator.get_name()}")
+        print(f"{self.get_name()} is trying to escape {predator.get_name()}")
         
         if num == 1:
-            print(f"{self.__name} got away and survived")
+            print(f"{self.get_name()} got away and survived")
+            self.rest()
         else:
-            print(f"{self.__name} got eaten by {predator.get_name()}")
+            print(f"{self.get_name()} got caught by {predator.get_name()}")
+            print(predator.eat())
+            
+sawannah = Habitat("Sawannah")
+gazelle = Gazelle("Gaz", 5, sawannah, 30)
+sawannah.add_animal(gazelle)
+
+lion = Lion("Simba", 6, "jungle", "Golden")
+print(f"{lion.get_name()} is living in {lion.get_habitat()}")
+
+lion.move_to_habitat(sawannah)
+
+lion.hunt(gazelle)
+gazelle.escape(lion)
