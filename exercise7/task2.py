@@ -27,14 +27,14 @@ class Mammal:
         self.__name = name
         self.__age = age
         self.__habitat = habitat
-        self.__state = "resting"
+        self.__state = ""
 
     def eat(self):
         self.set_state("eating")
         print(f"{self.get_name()} has eaten and is content")
 
     def rest(self):
-        print(f"{self.get_name()} is now resting in the shadow of an acacia tree")
+        self.set_state("resting")
     
     def get_name(self):
         return self.__name
@@ -61,6 +61,9 @@ class Mammal:
     def set_state(self, state):
         self.__state = state
         print(f"{self.__name} is {self.__state}")
+        
+        if state == "resting":
+            self.set_state("hungry")
         
     def get_state(self):
         return self.__state
@@ -130,12 +133,11 @@ class Gazelle(Mammal):
         
         if num == 1:
             print(f"{self.get_name()} got away and survived")
-            self.rest()
             predator.try_hunting_again()
         else:
             print(f"{self.get_name()} got caught by {predator.get_name()}")
             predator.eat()
             
 lion = Lion("Simba", 6, "sawannah", "Golden")
-print(f"{lion.get_name()} is {lion.get_state()}")
-lion.set_state("hungry")
+print(f"{lion.get_name()} got tired")
+lion.rest()
